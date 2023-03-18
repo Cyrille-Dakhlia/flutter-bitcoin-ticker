@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bitcoin_ticker/env/env.dart';
 import 'package:http/http.dart' as http;
 
 const List<String> currenciesList = [
@@ -33,7 +34,6 @@ const List<String> cryptoList = [
 ];
 
 const coinAPIURL = 'https://rest.coinapi.io/v1/exchangerate';
-const apiKey = '';
 
 class CoinData {
   Future<Map<String, String>> getData(String currency) async {
@@ -43,7 +43,7 @@ class CoinData {
     Map<String, String> mapCoinValues = {};
 
     for (String crypto in cryptoList) {
-      url = Uri.parse('$coinAPIURL/$crypto/$currency?apikey=$apiKey');
+      url = Uri.parse('$coinAPIURL/$crypto/$currency?apikey=${Env.coinApiKey}');
       response = await http.get(url);
 
       if (response.statusCode == 200) {

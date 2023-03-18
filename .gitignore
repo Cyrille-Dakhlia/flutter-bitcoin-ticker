@@ -27,6 +27,12 @@
 .pub/
 /build/
 
+# Exclude all .env files
+*.env
+
+# Exclude API Key
+env.g.dart
+
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
